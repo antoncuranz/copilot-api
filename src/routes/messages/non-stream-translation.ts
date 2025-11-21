@@ -49,7 +49,7 @@ export function translateToOpenAI(
 function translateModelName(model: string): string {
   // Subagent requests use a specific model number which Copilot doesn't support
   // Remove date suffixes (YYYYMMDD) but keep version numbers like 4-5, 4.5, 4-1, 4.1
-  const withoutDateSuffix = model.replace(/^(claude-\w+-4(?:[.-]\d)?)-.*/, "$1")
+  const withoutDateSuffix = model.replace(/^(claude-\w+-\d+(?:[.-]\d+)?)-\d{4,}.*/, "$1")
 
   // Convert dash notation to dot notation (e.g., claude-sonnet-4-5 → claude-sonnet-4.5)
   return withoutDateSuffix.replace(/^(claude-\w+-\d+)-(\d+)$/, "$1.$2")
